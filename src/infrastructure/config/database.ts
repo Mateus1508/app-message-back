@@ -1,6 +1,9 @@
 import { DataSource } from "typeorm";
 import { User } from "../../domain/entities/User";
 import { Message } from "../../domain/entities/Message";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const {
     DB_HOST,
@@ -18,6 +21,7 @@ export const Database = new DataSource({
     password: DB_PASSWORD,
     database: DB_NAME,
     entities: [User, Message],
+    migrations: ['src/infrastructure/migrations/*.ts'],
     synchronize: false,
     logging: true,
 })
